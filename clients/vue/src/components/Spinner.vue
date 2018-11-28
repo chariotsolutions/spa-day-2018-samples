@@ -1,0 +1,31 @@
+<template>
+    <div class="wrapper">
+        <img class="spinner" src="../assets/head.png"/>
+    </div>
+</template>
+
+<style lang="scss" scoped>
+    .wrapper {
+    height: 240px;
+    background: $color-green;
+    border: 1px solid $color-border;
+    box-sizing: border-box;
+    border-radius: 8px;
+    overflow: hidden;
+    }
+
+    .spinner {
+    width: auto;
+    height: 120px;
+    display: block;
+    margin: 60px auto auto auto;
+    vertical-align: middle;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+    }
+
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+</style>

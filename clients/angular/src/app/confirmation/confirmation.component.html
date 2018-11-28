@@ -1,0 +1,48 @@
+<div class="confirmation-container">
+
+  <ng-container *ngIf="dataPending; else sessionDetails">
+    <spa-spinner></spa-spinner>
+  </ng-container>
+
+  <ng-template #sessionDetails>
+    <ng-container *ngIf="registration; else notFound">
+      <div class="sessionDetails">
+        <h2>Success! Your registration is complete</h2>
+
+        <h3>
+          Appointment:&nbsp;
+          <b>
+            {{session.date | shortDate}} - {{session.date | shortTime}} - {{session.date | shortTimePlusOneHour}}
+          </b>
+        </h3>
+        <h3>Name: <b>{{registration.name}}</b></h3>
+        <h3>Email: <b>{{registration.email}}</b></h3>
+        <h3>Treatment: <b>{{registration.treatment}}</b></h3>
+
+        <div class="registrationList">
+          <h2>Complete Registrant List</h2>
+          <table>
+            <tr>
+              <th><b>Name</b></th>
+              <th><b>Email</b></th>
+              <th><b>Treatment</b></th>
+            </tr>
+            <tr *ngFor="let reg of sessionRegistrations">
+              <td>{{reg.name}}</td>
+              <td>{{reg.email}}</td>
+              <td>{{reg.treatment}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="button" routerLink="[/schedule]">Back to Schedule</div>
+
+    </ng-container>
+
+    <ng-template #notFound>
+      <div class="error-container">
+        <h3>Sorry, Registration Not Found</h3>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

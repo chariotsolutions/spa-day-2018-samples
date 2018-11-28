@@ -1,0 +1,125 @@
+@import '../../mixins.scss';
+
+.box {
+  width: 100%;
+  bottom: 0;
+  background: $color-white;
+
+  @include breakpoint(phablet) {
+    transition: width .5s ease;
+    position: fixed;
+    width: 180px;
+    right: 18%;
+  }
+
+  &.open {
+    @include breakpoint(phablet) {
+      width: 500px;
+      right: 18%;
+    }
+  }
+}
+
+.chat {
+  height: 90px;
+  min-height: 90px;
+  padding-right: 25px;
+
+  background: $color-green;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  color: $color-white;
+  font-size: 26px;
+  cursor: pointer;
+
+  img {
+    padding-right: 10px;
+  }
+}
+
+@mixin message {
+  height: 50px;
+  line-height: 50px;
+  border-radius: 6px;
+  margin: 10px 20px;
+  padding: 0 10px;
+}
+
+.theirMessage {
+  @include message;
+  background-color: #EEEEEE;
+  align-self: flex-start;
+}
+
+.myMessage {
+  @include message;
+  background-color: #BED5F3;
+  align-self: flex-end;
+}
+
+.messages {
+  transition: height .5s ease;
+  height: 0;
+  border-left: 1px solid $color-border;
+  border-right: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+
+  &.messagesOpen {
+    height: 310px;
+    padding-top: 10px;
+  }
+
+  .scrollableMessages {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.form {
+  display: flex;
+  margin: auto 20px 10px;
+  min-height: 50px;
+
+  input[type=text] {
+    font-size: 16px;
+    color: $color-text;
+    height: 50px;
+    padding: 0 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 1px solid $color-border;
+    border-right: 1px solid transparent;
+    box-sizing: border-box;
+    flex-grow: 1;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type=button] {
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 50px;
+    width: 100px;
+    color: $color-white;
+    background: $color-green;
+    border: 1px solid $color-green;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: auto;
+      background: $color-disabled;
+      border: 1px solid $color-disabled;
+    }
+  }
+}

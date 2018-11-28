@@ -1,0 +1,99 @@
+@import '../../mixins.scss';
+
+$input-radius: 6px;
+$input-width: 100%;
+$input-height: 35px;
+$font-size: 16px;
+
+.form {
+  background: $color-white;
+  box-sizing: border-box;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: 30px;
+
+  label {
+    display: block;
+    font-size: 16px;
+    color: $color-blue;
+    padding: 0 0 5px 0
+  }
+
+  select {
+    font-size: $font-size;
+    border: 1px solid $color-border;
+    border-radius: $input-radius;
+    background: $color-background;
+    width: $input-width / 2;
+    height: $input-height;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  option {
+    color: $color-blue;
+  }
+
+  input, button {
+    font-size: $font-size;
+    border: 1px solid $color-border;
+    border-radius: $input-radius;
+    background: $color-background;
+    width: $input-width;
+    height: $input-height;
+    margin: 0 0 10px 0;
+  }
+
+  button {
+    margin: 10px 0;
+    background: $color-green;
+    color: $color-white;
+    width: $input-width / 2;
+    height: $input-height + 10;
+    &:hover {
+      background: darken($color-green, 10%);
+    }
+  }
+
+  button:disabled {
+    opacity: 0.75;
+  }
+
+  button:disabled:hover {
+    cursor: not-allowed;
+  }
+  .formControl {
+    margin-top: 0.5em;
+  }
+
+
+  .button-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 18em;
+    margin-top: 2em;
+  }
+
+  .validation-error {
+    color: #ff0000;
+    height: 1em;
+    margin-left:2.3em;
+    margin-top: 0.1em;
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 0.8em;
+    font-weight: 100;
+  }
+
+  .error {
+    color: #ff0000;
+    text-align: center;
+    margin-top: 1em;
+    text-align: left;
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 1em;
+    font-weight: 100;
+  }
+}

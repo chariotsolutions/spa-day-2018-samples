@@ -1,0 +1,52 @@
+<h3>Register for your appointment:</h3>
+<form (ngSubmit)="register()" class="form" *ngIf="session; else busy;">
+  <h4><b>{{session.date | shortDate}} - {{session.date | shortTime}} - {{session.date | shortTimePlusOneHour}}</b></h4>
+
+  <div [formGroup]="formGroup">
+    <div class="formControl">
+      <label>
+        <span class="label-span">Name:</span>
+        <input type="text" formControlName="name">
+        <div class="validation-error">
+          <span *ngIf="nameError">{{nameError}}</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="formControl">
+      <label>
+        <span class="label-span">Email:</span>
+        <input type="email" formControlName="email">
+        <div class="validation-error">
+          <span *ngIf="emailError">{{emailError}}</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="formControl">
+      <label>
+        <div class="label-span">Treatment:</div>
+        <select formControlName="treatment">
+          <option value disabled hidden>Choose a treatment...</option>
+          <option *ngFor="let treatment of treatments;">{{treatment}}</option>>
+        </select>
+        <div class="validation-error">
+          <span *ngIf="treatmentError">{{treatmentError}}</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="error">
+      <i class="fa fa-warning" *ngIf="registrationError"></i> {{registrationError}}
+    </div>
+
+    <div class="button-bar">
+      <button class="btn btn-primary" [disabled]="!formGroup.valid">Register</button>
+    </div>
+  </div>
+
+</form>
+
+<ng-template #busy>
+  <spa-spinner></spa-spinner>
+</ng-template>

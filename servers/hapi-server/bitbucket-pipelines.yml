@@ -1,0 +1,109 @@
+image:
+    name: node:10
+
+options:
+    docker: true
+    max-time: 10
+
+pipelines:
+    default:
+        - step:
+            name: "Lint, build, test"
+            caches:
+                - node
+            script:
+                - 'npm install'
+                - 'npm run validate-package'
+                - 'npm run lint'
+                - 'npm audit'
+                - 'npm test'
+    branches:
+        develop:
+            - step:
+                name: "Develop: lint, build, test, publish"
+                caches:
+                    - node
+                    - docker
+                artifacts:
+                    - '*.tar.gz'
+                script:
+                    - 'npm install'
+                    - 'npm run validate-package'
+                    - 'npm run lint'
+                    - 'npm audit'
+                    - 'npm test'
+                    - 'tar -cvzf ../server-src-develop.tar.gz --exclude-vcs --exclude=node_modules --totals ${PWD}'
+                    - 'mv ../server-src-develop.tar.gz .'
+                    - 'docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"'
+                    - 'docker build --pull -t chariotspa/server:develop .'
+                    - 'docker push chariotspa/server:develop'
+
+        master:
+            - step:
+                name: "Master: lint, build, test, publish"
+                caches:
+                    # No cache for master, build fresh
+                artifacts:
+                    - '*.tar.gz'
+                script:
+                    - 'npm install'
+                    - 'npm run validate-package'
+                    - 'npm run lint'
+                    - 'npm audit'
+                    - 'npm test'
+                    - 'tar -cvzf ../server-src.tar.gz --exclude-vcs --exclude=node_modules --totals ${PWD}'
+                    - 'mv ../server-src.tar.gz .'
+                    - 'docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"'
+                    - 'docker build --pull -t chariotspa/server:latest .'
+                    - 'docker push chariotspa/server:latest'
+
+        release/*:
+            - step:
+                name: Lint, build, test, publish RC
+                caches:
+                    - node
+                    - docker
+                artifacts:
+                    - '*.tar.gz'
+                script:
+                    - 'npm install'
+                    - 'npm run validate-package'
+                    - 'npm run lint'
+                    - 'npm audit'
+                    - 'npm test'
+                    - 'tar -cvzf ../server-src-rc.tar.gz --exclude-vcs --exclude=node_modules --totals ${PWD}'
+                    - 'mv ../server-src-rc.tar.gz .'
+                    - 'docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"'
+                    - 'docker build --pull -t chariotspa/server:rc .'
+                    - 'docker push chariotspa/server:rc'
+            - step:
+                name: "Release new version"
+                trigger: manual
+                script:
+                    - echo "Send SSH, webhook, or SQS/SNS here"
+
+        hotfix/*:
+            - step:
+                name: Lint, build, test, publish hotfix RC
+                caches:
+                    - node
+                    - docker
+                artifacts:
+                    - '*.tar.gz'
+                script:
+                    - 'npm install'
+                    - 'npm run validate-package'
+                    - 'npm run lint'
+                    - 'npm audit'
+                    - 'npm test'
+                    - 'tar -cvzf ../server-src-rc.tar.gz --exclude-vcs --exclude=node_modules --totals ${PWD}'
+                    - 'mv ../server-src-rc.tar.gz .'
+                    - 'docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"'
+                    - 'docker build --pull -t chariotspa/server:rc .'
+                    - 'docker push chariotspa/server:rc'
+            - step:
+                name: "Release new version"
+                trigger: manual
+                script:
+                    - echo "Send SSH, webhook, or SQS/SNS here"
+

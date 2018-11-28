@@ -1,0 +1,19 @@
+<div class="container">
+  <h3>Choose an appointment time:</h3>
+  <ng-container *ngIf="schedule;else busy">
+    <div class="schedule">
+      <div class="sessionLink" (click)="bookSession(session.id)" *ngFor="let session of schedule">
+        <div>
+          <div class="time">{{session.date | shortTime}} - {{session.date | shortTimePlusOneHour}}</div>
+          <div class="date">{{session.date | shortDate}}</div>
+        </div>
+        <div class="attendees">{{session.registrationCount}}</div>
+        <div class="link"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #busy>
+    <spa-spinner></spa-spinner>
+  </ng-template>
+</div>

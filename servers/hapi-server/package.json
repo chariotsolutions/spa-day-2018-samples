@@ -1,0 +1,91 @@
+{
+    "name": "spaday-server",
+    "version": "0.1.0",
+    "description": "Chariot SPA Day demo server",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "check-node-version --package && node --use_strict src/index.js",
+        "start:debug": "check-node-version --package && DEBUG=* node --use_strict src/index.js",
+        "snyk:test": "snyk test",
+        "snyk:protect": "snyk protect",
+        "lint": "standardx --verbose",
+        "lint:fix": "standardx --verbose --fix",
+        "validate-package": "pjv -w -r",
+        "test": "check-node-version --package && cross-env NODE_ENV=unit nyc --reporter=lcov mocha --recursive --exit test/unit",
+        "clean": "rimraf logs/* && rimraf database/*",
+        "preflight": "npm run validate-package && npm run lint && npm audit && npm test && npm run coverage:test",
+        "coverage:report": "nyc report",
+        "coverage:test": "nyc check-coverage"
+    },
+    "files": [
+        "src",
+        "config"
+    ],
+    "author": "Jeffrey Labonski <jlabonski@chariotsolutions.com>",
+    "license": "ISC",
+    "keywords": [
+        "spa day",
+        "demo"
+    ],
+    "bugs": "https://bitbucket.org/chariotspaday/server/issues?status=new&status=open",
+    "homepage": "https://chariotsolutions.com/event/single-page-application-spa-day/",
+    "contributors": [
+        "Jeffrey Labonski <jlabonski@chariotsolutions.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@bitbucket.org:chariotspaday/server.git"
+    },
+    "engines": {
+        "node": "^10"
+    },
+    "dependencies": {
+        "blipp": "^3.1.1",
+        "boom": "^7.2.2",
+        "check-node-version": "^3.2.0",
+        "clarify": "^2.1.0",
+        "config": "^2.0.1",
+        "cross-env": "^5.2.0",
+        "debug": "^4.1.0",
+        "epimetheus": "^1.0.92",
+        "good": "^8.1.1",
+        "good-console": "^7.1.0",
+        "good-squeeze": "^5.1.0",
+        "hapi": "^17.6.0",
+        "hapi-auto-route": "^2.0.4",
+        "hapi-ending": "^1.0.0",
+        "hapi-plugin-websocket": "^2.0.14",
+        "hapi-swagger": "^9.1.2",
+        "hapi-swaggered": "^3.0.2",
+        "hapi-swaggered-ui": "^3.0.2",
+        "hapijs-status-monitor": "^0.6.0",
+        "heavy": "^6.1.0",
+        "inert": "^5.1.0",
+        "joi": "^14.0.4",
+        "lodash": "^4.17.11",
+        "log4js": "^3.0.6",
+        "moment": "^2.22.2",
+        "poop": "^3.0.0",
+        "trace": "^3.1.1",
+        "uuid": "^3.3.2",
+        "vision": "^5.4.0",
+        "ws": "^6.1.0"
+    },
+    "devDependencies": {
+        "chai": "*",
+        "eslint": "^5.7.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-lodash": "^3.1.0",
+        "eslint-plugin-mocha": "^5.2.0",
+        "eslint-plugin-node": "^7.0.1",
+        "mocha": "*",
+        "nyc": "^13.1.0",
+        "package-json-validator": "^0.6.3",
+        "rimraf": "^2.6.2",
+        "snyk": "^1.104.2",
+        "standardx": "^3.0.1"
+    },
+    "optionalDependencies": {
+        "utf-8-validate": "^5.0.1"
+    }
+}

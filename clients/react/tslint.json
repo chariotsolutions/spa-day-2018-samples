@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-config-airbnb"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js",
+      "src/logo.svg",
+      "src/index.css"
+    ]
+  },
+  "rules": {
+    "no-console": false,
+    "max-line-length": false,
+    "jsx-no-lambda": false,
+    "semicolon": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "import-name": false,
+    "interface-name": false,
+    "variable-name": false,
+    "ter-indent": [true, 4],
+    "indent": [true, "spaces", 4],
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ]
+  }
+}

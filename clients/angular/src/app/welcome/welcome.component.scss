@@ -1,0 +1,17 @@
+@import '../../mixins.scss';
+
+.home {
+  @include app-margin;
+  padding-top: 40px;
+  overflow: auto;
+}
+
+.welcomeMessage {
+  div {
+    padding-bottom: 10px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}

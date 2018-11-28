@@ -1,0 +1,11 @@
+{
+  "/chat": {
+    "target": "http://localhost:8080/spaday",
+    "ws": true
+  },
+  "/api/**": {
+    "target": "http://localhost:8080/spaday",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

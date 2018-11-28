@@ -1,0 +1,34 @@
+<div class="box" [ngClass]="openCloseStyle()">
+  <div class="chat" (click)="chatToggle()"><img src="../../assets/chat.svg"/>CHAT</div>
+  <div class="messages" [ngClass]="messagesOpenCloseStyle()">
+    <div class="scrollableMessages">
+      <div *ngFor="let msg of output; let i = index;"
+           [ngClass]="msg.sender === name ? 'myMessage' : 'theirMessage'"
+      >
+         {{msg.sender}}: {{msg.message}}
+      </div>
+      <div #chatBottom style="min-height:80px; height:80px;"></div>
+    </div>
+    <div class="form" *ngIf="connected; else loginForm;">
+      <input
+        #messageInput
+        type='text'
+        [(ngModel)]="msgInput"
+        placeholder="Message"
+        (keydown.enter)="sendMessage()"
+      />
+      <input type='button' value='POST' (click)="sendMessage()" [disabled]="!this.msgInput">
+    </div>
+    <ng-template #loginForm>
+      <div class="form">
+        <input
+          type='text'
+          [(ngModel)]="nameInput"
+          placeholder="Name"
+          (keydown.enter)="connect()"
+        />
+        <input type='button' value='CONNECT' (click)="connect()" [disabled]="!this.nameInput">
+      </div>
+    </ng-template>
+  </div>
+</div>

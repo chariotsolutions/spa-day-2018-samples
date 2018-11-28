@@ -1,0 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import './mixins.scss';
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #F8F9FA;
+
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: $color-text;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-top: 0;
+  color: #0E2B67;
+}
+
+h3, h4, h5 {
+  font-weight: normal;
+}

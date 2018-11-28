@@ -1,0 +1,52 @@
+@import '../../mixins.scss';
+
+.sessionDetails {
+  h3 {
+    margin: 0;
+  }
+
+  padding: 0 0 50px 0;
+}
+
+.registrationList {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  padding: 30px;
+  margin: 30px 0 0 0;
+  width: 100%;
+
+  h2 {
+    color: $color-text
+  }
+
+  table {
+    border-collapse: collapse;
+    border-top: 1px solid $color-border;
+    width: 100%;
+  }
+
+  tr {
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+    height: 50px;
+
+    &:nth-child(even) {
+      background: $color-background;
+    }
+  }
+}
+
+.button {
+  width: 130px;
+  margin: 10px 0;
+  background: $color-green;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  color: $color-white;
+  &:hover {
+    background: darken($color-green, 10%);
+  }
+}

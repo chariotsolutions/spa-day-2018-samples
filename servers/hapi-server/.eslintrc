@@ -1,0 +1,31 @@
+{
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "extends": [
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:node/recommended",
+        "plugin:mocha/recommended",
+        "plugin:lodash/recommended"
+    ],
+    "plugins": [
+        "import",
+        "node",
+        "mocha",
+        "lodash"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "node/no-missing-import": "error",
+        "node/no-extraneous-import": "error",
+        "node/exports-style": "error",
+        "mocha/no-exclusive-tests": "error",
+        "mocha/no-nested-tests": "error",
+        "mocha/no-skipped-tests": "error",
+        "mocha/no-pending-tests": "error",
+        "lodash/import-scope": "off",
+        "lodash/prefer-constant": "off"
+    }
+}

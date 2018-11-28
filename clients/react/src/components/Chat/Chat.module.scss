@@ -1,0 +1,109 @@
+@import '../../mixins.scss';
+
+.box {
+  width: 100%;
+  bottom: 0;
+  background: $color-white;
+
+  @include breakpoint(phablet) {
+    transition: width .5s ease;
+    position: fixed;
+    width: 180px;
+    right: 18%;
+
+    &:hover {
+      animation: shake 1s;
+      animation-delay: 1s;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  &.open {
+    @include breakpoint(phablet) {
+      width: 500px;
+      right: 18%;
+      animation: none;
+    }
+  }
+}
+
+.chat {
+  height: 90px;
+  min-height: 90px;
+  padding-right: 25px;
+
+  background: $color-green;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  color: $color-white;
+  font-size: 26px;
+  cursor: pointer;
+
+  img {
+    padding-right: 10px;
+  }
+}
+
+@mixin message {
+  border-radius: 6px;
+  margin: 10px 20px;
+  padding: 5px 10px;
+
+  span {
+    display: block;
+    font-size: 10px;
+  }
+}
+
+.theirMessage {
+  @include message;
+  background-color: #EEEEEE;
+  align-self: flex-start;
+}
+
+.myMessage {
+  @include message;
+  background-color: #BED5F3;
+  align-self: flex-end;
+}
+
+.systemMessage {
+  color: $color-border;
+  align-self: center;
+}
+
+.messages {
+  transition: height .5s ease;
+  height: 0;
+  border-left: 1px solid $color-border;
+  border-right: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+
+  &.messagesOpen {
+    height: 310px;
+    padding-top: 10px;
+  }
+
+  .scrollableMessages {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

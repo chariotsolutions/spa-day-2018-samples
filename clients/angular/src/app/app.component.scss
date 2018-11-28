@@ -1,0 +1,104 @@
+@import '../mixins.scss';
+
+.header {
+  @include app-margin;
+
+  height: 143px;
+  min-height: 143px;
+  background: $color-blue;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.spaLogo {
+  display: none;
+
+  @include breakpoint(phablet) {
+    display: block;
+    width: auto;
+    height: 85px;
+
+    &:hover {
+      animation: spin infinite 20s linear;
+    }
+  }
+}
+
+.title {
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+  padding-left: 10px;
+
+  color: $color-white;
+}
+
+.chariotLogo {
+  display: none;
+
+  @include breakpoint(phablet) {
+    display: block;
+    width: 145px;
+    height: 45px;
+    margin-left: auto;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.home {
+  @include app-margin;
+  padding-top: 40px;
+  overflow: auto;
+}
+
+
+.app-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.chat-handle {
+  width: 24px;
+  margin-top: 9.85em;
+  color: white;
+  background: blue;
+  border-left: 1px solid blue;
+  border-bottom: 1px solid blue;
+  font-family: sans-serif;
+  font-size: 0.75em;
+
+  .toggle {
+    margin-top: 8px;
+    margin-left: 8px;
+  }
+
+  .chat-handle-label {
+    transform: rotate(-90deg);
+    margin-top: 140px;
+    font-weight: bold;
+  }
+}
+
+.chat-body {
+  width: 20em;
+  margin-top: 7.4em;
+  border: 1px solid gray;
+  background: #ffffff;
+}

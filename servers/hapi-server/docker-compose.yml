@@ -1,0 +1,31 @@
+version: '3.7'
+
+# Please note that there is a binary imncompatability with running node programs
+# in containers- node-gyp compiles OS specific files from C++ when you `npm
+# install`.
+
+
+services:
+    server:
+        image: chariotspa/server:localdev
+        build:
+            context: .
+        ports:
+            - target: 8000
+              published: 8000
+              protocol: tcp
+              mode: host
+
+
+    dev:
+        image: node:10
+        entrypoint: /bin/bash
+        ports:
+            - target: 8000
+              published: 8000
+              protocol: tcp
+              mode: host
+        volumes:
+            - type: bind
+              source: .
+              target: /build

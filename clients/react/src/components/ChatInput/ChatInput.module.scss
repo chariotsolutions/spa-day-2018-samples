@@ -1,0 +1,50 @@
+@import '../../mixins.scss';
+
+.form {
+  display: flex;
+  margin: auto 20px 10px;
+  min-height: 50px;
+
+  input[type=text] {
+    font-size: 16px;
+    color: $color-text;
+    height: 50px;
+    padding: 0 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 1px solid $color-border;
+    border-right: 1px solid transparent;
+    box-sizing: border-box;
+    flex-grow: 1;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type=submit] {
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 50px;
+    width: 100px;
+    color: $color-white;
+    background: $color-green;
+    border: 1px solid $color-green;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: auto;
+      background: $color-disabled;
+      border: 1px solid $color-disabled;
+    }
+  }
+}
+
+.error {
+  box-shadow: 0 0 125px -15px red;
+}
