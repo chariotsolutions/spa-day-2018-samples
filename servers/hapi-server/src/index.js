@@ -36,18 +36,12 @@ module.exports = (async () => {
         process.exit(0) // eslint-disable-line no-process-exit
     }
 
-    /* This fixes a bug with node-dev where the process hangs in the background,
-     * zombie-like, and needs a SIGKILL to remove. Something is stuck that
-     * prevents a graceful exit. Since we're exiting anyway, I don't
-     * particularly care to spend time to find it.
-     */
-    process.on('SIGTERM', gracefulShutdown)
-
     /*
      * Graceful stop in PM2.
      * http://pm2.keymetrics.io/docs/usage/signals-clean-restart/
      */
     process.on('SIGINT', gracefulShutdown)
+    process.on('SIGTERM', gracefulShutdown)
 
     process.on('unhandledRejection', (err) => {
         log.error('Unhandled promise rejection failure', err)

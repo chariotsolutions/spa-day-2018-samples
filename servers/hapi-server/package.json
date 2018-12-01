@@ -15,7 +15,8 @@
         "clean": "rimraf logs/* && rimraf database/*",
         "preflight": "npm run validate-package && npm run lint && npm audit && npm test && npm run coverage:test",
         "coverage:report": "nyc report",
-        "coverage:test": "nyc check-coverage"
+        "coverage:test": "nyc check-coverage",
+        "repl": "node --experimental-repl-await -i"
     },
     "files": [
         "src",

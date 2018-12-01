@@ -1,7 +1,7 @@
 import { combineEpics, Epic, ofType } from 'redux-observable';
 import { forkJoin, Observable, of } from 'rxjs';
 import { ActionCreators, Actions, ActionType, RegistrationRequest } from '../reducer/spaReducer';
-import { catchError, delay, flatMap, map, mergeMap } from 'rxjs/operators';
+import { catchError, delay, map, mergeMap } from 'rxjs/operators';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { ApiSession, apiToSession, Session } from '../../domain/session';
 import { Registration, registrationToApi } from '../../domain/registration';
@@ -66,7 +66,7 @@ const registrationRequestEpic: Epic<ActionType, any> =
                     registrationToApi(registrationRequest.payload),
                     { 'Content-Type': 'application/json' },
                 ).pipe(
-                    flatMap(() =>
+                    mergeMap(() =>
                         [
                             ActionCreators.registrationSuccess(),
                             ActionCreators.scheduleRequest(),

@@ -1,4 +1,3 @@
-const path = require('path')
 const config = require('config')
 const inert = require('inert')
 const vision = require('vision')
@@ -66,8 +65,8 @@ hapiPlugins.push({
 hapiPlugins.push({
     plugin: poop,
     options: {
-        logPath: path.join(__dirname, 'logs', 'poop.log'),
-        heapdumpFolder: path.join(__dirname, 'logs')
+        logPath: './logs/poop.log',
+        heapdumpFolder: './logs'
     }
 })
 
